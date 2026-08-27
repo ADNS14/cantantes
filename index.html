@@ -8,12 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #140f1c;
+    --bg: #--bg: #100c18;
     --bg-soft: #1c1526;
     --ink: #f3ede2;
     --ink-dim: #a99bc4;
-    --magenta: #ff2e6b;
-    --yellow: #f5d90a;
+    --magenta: #ff4488;
+    --yellow: #ffd93d;
     --line: rgba(243,237,226,0.14);
   }
 
@@ -38,7 +38,7 @@
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    padding:100px 0 70px;
+    padding:100px 0 65px;
     overflow:hidden;
     border-bottom:1px solid var(--line);
   }
@@ -55,7 +55,7 @@
     font-family:'Anton', sans-serif;
     font-weight:400;
     text-transform:uppercase;
-    font-size:clamp(48px, 11vw, 108px);
+    font-size:clamp(48px, 11vw, 110px);
     line-height:.92;
     letter-spacing:.01em;
     margin-top:14px;
@@ -202,7 +202,7 @@
 
   .c1{ background:conic-gradient(from 200deg, #ff2e6b, #7a1f42, #ff2e6b); }
   .c2{ background:conic-gradient(from 120deg, #f5d90a, #7a6c07, #f5d90a); }
-  .c3{ background:conic-gradient(from 60deg,  #35d0c0, #14524b, #35d0c0); }
+  .c3{ background:conic-gradient(from 60deg,  #35d0c0, #14524b, #2bb8aa); }
   .c4{ background:conic-gradient(from 300deg, #ff8a3d, #7a3f14, #ff8a3d); }
   .c5{ background:conic-gradient(from 20deg,  #b98bff, #3d2266, #b98bff); }
 
@@ -210,14 +210,14 @@
     font-family:'Anton', sans-serif;
     font-weight:400;
     text-transform:uppercase;
-    font-size:clamp(24px, 3.4vw, 32px);
+    font-size:clamp(24px, 3.4vw, 31px);
     letter-spacing:.01em;
     margin-bottom:8px;
   }
 
   .info .bio{
     color:var(--ink-dim);
-    font-size:15px;
+    font-size:14px;
     line-height:1.6;
     max-width:560px;
     margin-bottom:16px;
@@ -226,7 +226,7 @@
   .album-tag{
     display:inline-flex;
     align-items:baseline;
-    gap:8px;
+    gap:9px;
     font-family:'JetBrains Mono', monospace;
     font-size:12px;
     letter-spacing:.08em;
@@ -238,13 +238,13 @@
 
   .album-tag b{
     color:var(--magenta);
-    font-weight:600;
+    font-weight:600.0;
     text-transform:none;
     letter-spacing:0;
     font-size:13px;
   }
 
-  @media (max-width:640px){
+  @media (max-width:650px){
     .track{
       grid-template-columns:40px 84px 1fr;
       gap:16px;
@@ -261,7 +261,7 @@
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
-    gap:12px;
+    gap:14px;
   }
 
   footer p{
@@ -277,9 +277,9 @@
 
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">Ejercicio 4 · Página web de músicos</p>
-      <h1>Mi<br>mix<span>tape</span></h1>
-      <p class="sub">Cinco artistas que suenan siempre en mi lista: reguetón, house y rap urbano, lado A de mis favoritos.</p>
+      <p class="eyebrow">Ejercicio 5 · mis artistas favoritos</p>
+      <h1>Mi<br>play<span>list</span></h1>
+      <p class="sub">Cinco artistas que suenan siempre en mi lista: reguetón, guaracha y rap urbano, lado A de mis favoritos.</p>
     </div>
     <div class="cassette" aria-hidden="true">
       <svg viewBox="0 0 240 150">
@@ -315,7 +315,7 @@
         <div class="cover c1"><div class="center">HN</div></div>
         <div class="info">
           <h3>Hector Nazza</h3>
-          <p class="bio">Cantante urbano de Cartagena. Su reguetón mezcla melodías románticas con el sabor caribeño de la costa, y se ha ganado un lugar en la escena urbana colombiana con temas pensados para sonar en la calle y en la pista.</p>
+          <p class="bio">Cantante de Cartagena. Su reguetón mezcla melodías románticas con el sabor caribeño de la costa, y se ha ganado un lugar en la escena urbana colombiana con temas pensados para sonar en la calle y en la pista.</p>
           <div class="album-tag">Álbum más representativo <b>Flow 1050</b></div>
         </div>
       </article>
@@ -335,7 +335,7 @@
         <div class="cover c3"><div class="center">PR</div></div>
         <div class="info">
           <h3>Pirlo</h3>
-          <p class="bio">Artista del rap y trap latino, conocido por sus colaboraciones dentro del circuito urbano independiente. Su flow directo y sus letras crudas lo han convertido en una voz reconocible del género underground.</p>
+          <p class="bio">Artista del rap latino, conocido por sus colaboraciones dentro del circuito urbano independiente. Su flow directo y sus letras crudas lo han convertido en una voz reconocible del género underground.</p>
           <div class="album-tag">Álbum más representativo <b>Métricas Frías</b></div>
         </div>
       </article>
