@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Mixtape — Músicos Favoritos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #140f1c;
+    --bg-soft: #1c1526;
+    --ink: #f3ede2;
+    --ink-dim: #a99bc4;
+    --magenta: #ff2e6b;
+    --yellow: #f5d90a;
+    --line: rgba(243,237,226,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(255,46,107,0.18), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(245,217,10,0.10), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{ max-width:980px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:100px 0 70px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+
+  .hero .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:.18em;
+    color:var(--yellow);
+    text-transform:uppercase;
+  }
+
+  .hero h1{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:clamp(48px, 11vw, 108px);
+    line-height:.92;
+    letter-spacing:.01em;
+    margin-top:14px;
+    color:var(--ink);
+  }
+
+  .hero h1 span{ color:var(--magenta); }
+
+  .hero p.sub{
+    margin-top:22px;
+    max-width:520px;
+    color:var(--ink-dim);
+    font-size:17px;
+    line-height:1.55;
+  }
+
+  .cassette{
+    position:absolute;
+    right:-40px;
+    top:60px;
+    width:280px;
+    opacity:.9;
+  }
+
+  .cassette svg{ width:100%; height:auto; }
+
+  .reel{
+    transform-origin:center;
+    animation:spin 6s linear infinite;
+  }
+  .reel.r2{ animation-duration:6s; }
+
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce){
+    .reel{ animation:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  @media (max-width: 720px){
+    .cassette{ display:none; }
+  }
+
+  /* ---------- SIDE LABEL ---------- */
+  .side-label{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:34px 0 10px;
+  }
+
+  .side-label .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.16em;
+    color:var(--bg);
+    background:var(--yellow);
+    padding:5px 10px;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+
+  .side-label .rule{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .side-label span.count{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink-dim);
+    letter-spacing:.1em;
+  }
+
+  /* ---------- TRACKLIST ---------- */
+  .tracklist{ padding-bottom:90px; }
+
+  .track{
+    display:grid;
+    grid-template-columns:64px 132px 1fr;
+    gap:28px;
+    align-items:start;
+    padding:38px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+
+  .track:first-of-type{ padding-top:8px; }
+
+  .track .num{
+    font-family:'Anton', sans-serif;
+    font-size:34px;
+    color:var(--ink-dim);
+    line-height:1;
+    padding-top:6px;
+  }
+
+  /* vinyl / cover art placeholder, no external images */
+  .cover{
+    width:132px;
+    height:132px;
+    border-radius:50%;
+    position:relative;
+    flex-shrink:0;
+    box-shadow:0 10px 26px rgba(0,0,0,.45);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .track:hover .cover{ transform:rotate(28deg); }
+
+  .cover::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:
+      repeating-radial-gradient(circle at center, rgba(0,0,0,.35) 0 1px, transparent 1px 5px);
+    opacity:.5;
+  }
+
+  .cover .center{
+    position:absolute;
+    inset:38%;
+    border-radius:50%;
+    background:var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.05em;
+  }
+
+  .cover .center::after{
+    content:"";
+    position:absolute;
+    width:7px; height:7px;
+    background:var(--bg);
+    border:2px solid var(--ink-dim);
+    border-radius:50%;
+  }
+
+  .c1{ background:conic-gradient(from 200deg, #ff2e6b, #7a1f42, #ff2e6b); }
+  .c2{ background:conic-gradient(from 120deg, #f5d90a, #7a6c07, #f5d90a); }
+  .c3{ background:conic-gradient(from 60deg,  #35d0c0, #14524b, #35d0c0); }
+  .c4{ background:conic-gradient(from 300deg, #ff8a3d, #7a3f14, #ff8a3d); }
+  .c5{ background:conic-gradient(from 20deg,  #b98bff, #3d2266, #b98bff); }
+
+  .info h3{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:clamp(24px, 3.4vw, 32px);
+    letter-spacing:.01em;
+    margin-bottom:8px;
+  }
+
+  .info .bio{
+    color:var(--ink-dim);
+    font-size:15px;
+    line-height:1.6;
+    max-width:560px;
+    margin-bottom:16px;
+  }
+
+  .album-tag{
+    display:inline-flex;
+    align-items:baseline;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink);
+    border:1px solid var(--line);
+    padding:7px 12px;
+  }
+
+  .album-tag b{
+    color:var(--magenta);
+    font-weight:600;
+    text-transform:none;
+    letter-spacing:0;
+    font-size:13px;
+  }
+
+  @media (max-width:640px){
+    .track{
+      grid-template-columns:40px 84px 1fr;
+      gap:16px;
+    }
+    .cover{ width:84px; height:84px; }
+    .num{ font-size:22px; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:40px 0 60px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  footer p{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    color:var(--ink-dim);
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Ejercicio 4 · Página web de músicos</p>
+      <h1>Mi<br>mix<span>tape</span></h1>
+      <p class="sub">Cinco artistas que suenan siempre en mi lista: reguetón, house y rap urbano, lado A de mis favoritos.</p>
+    </div>
+    <div class="cassette" aria-hidden="true">
+      <svg viewBox="0 0 240 150">
+        <rect x="4" y="4" width="232" height="142" rx="10" fill="#1c1526" stroke="#3a2c4d" stroke-width="2"/>
+        <rect x="20" y="18" width="200" height="60" rx="4" fill="#0f0a16"/>
+        <g class="reel" transform="translate(72,48)">
+          <circle r="24" fill="none" stroke="#8b7fa8" stroke-width="2"/>
+          <circle r="6" fill="#f5d90a"/>
+        </g>
+        <g class="reel r2" transform="translate(168,48)">
+          <circle r="24" fill="none" stroke="#8b7fa8" stroke-width="2"/>
+          <circle r="6" fill="#ff2e6b"/>
+        </g>
+        <rect x="30" y="92" width="180" height="10" rx="5" fill="#2a1f38"/>
+        <rect x="30" y="108" width="120" height="8" rx="4" fill="#2a1f38"/>
+        <circle cx="45" cy="132" r="5" fill="#3a2c4d"/>
+        <circle cx="195" cy="132" r="5" fill="#3a2c4d"/>
+      </svg>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="side-label">
+      <span class="tag">Lado A</span>
+      <div class="rule"></div>
+      <span class="count">05 tracks</span>
+    </div>
+
+    <section class="tracklist">
+
+      <article class="track">
+        <span class="num">01</span>
+        <div class="cover c1"><div class="center">HN</div></div>
+        <div class="info">
+          <h3>Hector Nazza</h3>
+          <p class="bio">Cantante urbano de Cartagena. Su reguetón mezcla melodías románticas con el sabor caribeño de la costa, y se ha ganado un lugar en la escena urbana colombiana con temas pensados para sonar en la calle y en la pista.</p>
+          <div class="album-tag">Álbum más representativo <b>Flow 1050</b></div>
+        </div>
+      </article>
+
+      <article class="track">
+        <span class="num">02</span>
+        <div class="cover c2"><div class="center">NP</div></div>
+        <div class="info">
+          <h3>Nicco Parga</h3>
+          <p class="bio">Productor y artista colombiano que se mueve entre el house y el pop urbano. Su sonido cuida mucho la producción, con bases electrónicas limpias y letras que hablan de la ciudad y la noche bogotana.</p>
+          <div class="album-tag">Álbum más representativo <b>Bogotá</b></div>
+        </div>
+      </article>
+
+      <article class="track">
+        <span class="num">03</span>
+        <div class="cover c3"><div class="center">PR</div></div>
+        <div class="info">
+          <h3>Pirlo</h3>
+          <p class="bio">Artista del rap y trap latino, conocido por sus colaboraciones dentro del circuito urbano independiente. Su flow directo y sus letras crudas lo han convertido en una voz reconocible del género underground.</p>
+          <div class="album-tag">Álbum más representativo <b>Métricas Frías</b></div>
+        </div>
+      </article>
+
+      <article class="track">
+        <span class="num">04</span>
+        <div class="cover c4"><div class="center">DP</div></div>
+        <div class="info">
+          <h3>Doble Porción</h3>
+          <p class="bio">Dupla de hip hop conocida por su química en el freestyle y sus temas cargados de referencias callejeras. "Magia Negra" es uno de sus cortes más escuchados dentro de la escena del rap en español.</p>
+          <div class="album-tag">Álbum más representativo <b>Magia Negra</b></div>
+        </div>
+      </article>
+
+      <article class="track">
+        <span class="num">05</span>
+        <div class="cover c5"><div class="center">AL</div></div>
+        <div class="info">
+          <h3>Aldeano</h3>
+          <p class="bio">Referente del rap cubano, reconocido por letras de contenido social y político que retratan la realidad de la isla. Su estilo crudo y directo lo posicionó como una de las voces más influyentes del rap underground en español.</p>
+          <div class="album-tag">Álbum más representativo <b>Censurado</b></div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>Mixtape personal · Lado A / Lado B pendiente</p>
+    <p>Hecho para el ejercicio 4</p>
+  </footer>
+
+</body>
+</html>
